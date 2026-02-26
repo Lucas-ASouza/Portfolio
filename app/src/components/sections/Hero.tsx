@@ -18,7 +18,7 @@ export const Hero = () => {
                             backgroundColor: "#20b2a6",
                             left: `${Math.random() * 100}%`,
                             top: `${Math.random() * 100}%`,
-                            animation: "slow-drift 10s linear infinite",
+                            animation: `slow-drift ${15 + Math.random() *20}s ease-in-out infinite`,
                         }}
                     />
                 ))}
