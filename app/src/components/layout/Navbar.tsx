@@ -1,4 +1,8 @@
+"use client";
+
 import { Button } from "@/components/Button";
+import { Menu, X } from "lucide-react";
+import { useState } from "react";
 
 const navLinks = [
     {href: "#about", label: "About"},
@@ -8,16 +12,17 @@ const navLinks = [
     {href: "#contact", label: "Contact"},
 ]
 
-// o cara do tutorial prefere começar pelo navbar e depois ir para as outras partes (de cima para baixo, tecnicamente)
 export const Navbar = () => {
+
+    const [isHamburguerOpen, setIsHamburguerOpen] = useState(false);
+    
     return (
         <header className="fixed top-0 left-0 right-0 bg-transparent py-5">
             <nav className="container mx-auto px-6 flex items-center justify-between">
                 <a href="#" className="text-xl font-bold tracking-light hover:text-primary">LA<span className="text-primary">.</span></a>
 
-                <div className="felx items-center gap-1">
+                <div className="hidden md:flex items-center gap-1">
                     <div className="glass rounded-full px-2 py-1 flex items-center gap-1">
-                    {/* mapear os links é como se fosse usar um for para percorrer o array e aí exibir cada link que eu criei com a label */}
                         {navLinks.map((link, index) => (
                         <a key={index} href={link.href} className="px-4 py-2 text-sm text-muted-foreground hover:text-foreground rounded-full hover:bg-surface"
                         >{link.label}</a>
@@ -25,10 +30,31 @@ export const Navbar = () => {
                     </div>
                 </div>
 
-                <div>
+                <div className="hidden md:block">
                     <Button size="sm">Contact Me</Button>
                 </div>
+
+                {/* Mobile Menu Button */}
+                <button 
+                    className="md:hidden p-2 text-foreground cursor-pointer"
+                    onClick={() => setIsHamburguerOpen(!isHamburguerOpen)}
+                    >
+                        {isHamburguerOpen ? <X size={24}/> :<Menu size={24}/>}
+                </button>
             </nav>
+            {/* Mobile Menu */}
+            {isHamburguerOpen && (
+            <div className="md:hidden glass-strong animate-fade-in">
+                <div className="container mx-auto px-6 py-6 flex flex-col gap-4">
+                    {navLinks.map((link, index) => (
+                    <a key={index} href={link.href} className="text-lg text-muted-foreground hover:text-foreground py-2"
+                    >{link.label}</a>
+                    ))}
+
+                    <Button>Contact Me</Button>
+                </div>
+            </div>
+            )}
         </header>
     )
 }

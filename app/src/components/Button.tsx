@@ -6,7 +6,7 @@ interface ButtonProps {
     children: ReactNode;
 }
 
-export const Button: React.FC<ButtonProps> = ({className = "", size = "default",children}) => {
+export const Button: React.FC<ButtonProps> = ({className = "", size = "default", children}) => {
     const baseClasses = "relative overflow-hidden rounded-full font-medium focus:outline-none focus-visible:ring-primary bg-primary text-primary-foreground hover:bg-primary/90 shadow-lg shadow-primary/25"
 
     const sizeClasses = {
