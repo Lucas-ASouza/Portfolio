@@ -34,7 +34,6 @@ export const Navbar = () => {
                     <Button size="sm">Contact Me</Button>
                 </div>
 
-                {/* Mobile Menu Button */}
                 <button 
                     className="md:hidden p-2 text-foreground cursor-pointer"
                     onClick={() => setIsHamburguerOpen(!isHamburguerOpen)}
@@ -42,7 +41,7 @@ export const Navbar = () => {
                         {isHamburguerOpen ? <X size={24}/> :<Menu size={24}/>}
                 </button>
             </nav>
-            {/* Mobile Menu */}
+
             {isHamburguerOpen && (
             <div className="md:hidden glass-strong animate-fade-in">
                 <div className="container mx-auto px-6 py-6 flex flex-col gap-4">
